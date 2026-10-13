@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Federico Tosazzi · ODEX</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Layout: una colonna centrata, scheda unica con monogramma, dati e azioni. */
+  :root {
+    --bg: #F3F5F8;
+    --card: #FFFFFF;
+    --ink: #0E1A2B;
+    --muted: #5B6779;
+    --line: #DCE2EA;
+    --accent: #1F4FD8;
+    --accent-ink: #FFFFFF;
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0A1220; --card: #111C2E; --ink: #EEF2F8; --muted: #9AA7BA;
+      --line: #223149; --accent: #7FA2FF; --accent-ink: #0A1220;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0A1220; --card: #111C2E; --ink: #EEF2F8; --muted: #9AA7BA;
+    --line: #223149; --accent: #7FA2FF; --accent-ink: #0A1220;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font: 16px/1.5 var(--body);
+    padding-inline: 16px; padding-block: 32px;
+    min-height: 100vh;
+    display: grid; place-items: start center;
+  }
+  main {
+    width: 100%; max-width: 420px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 32px 24px 24px;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .head { display: flex; flex-direction: column; gap: 16px; }
+  .mono {
+    width: 64px; height: 64px; border-radius: 16px;
+    background: var(--ink); color: var(--card);
+    display: grid; place-items: center;
+    font: 700 22px/1 var(--display); letter-spacing: .02em;
+  }
+  h1 {
+    margin: 0; font: 700 30px/1.1 var(--display);
+    letter-spacing: -.01em; text-wrap: balance;
+  }
+  .role { margin: 0; color: var(--muted); font-weight: 500; }
+  .org {
+    margin: 0; font: 700 13px/1 var(--display);
+    letter-spacing: .22em; text-transform: uppercase;
+  }
+  .actions { display: flex; flex-direction: column; gap: 10px; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 52px; padding: 0 20px; border-radius: 14px;
+    font: 600 16px/1 var(--body); text-decoration: none;
+    border: 1px solid var(--line); color: var(--ink); background: transparent;
+  }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+  dl { margin: 0; display: grid; gap: 14px; }
+  dl div { display: grid; gap: 2px; min-width: 0; }
+  dt { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  dd { margin: 0; overflow-wrap: anywhere; }
+  dd a { color: inherit; text-underline-offset: 3px; }
+  .qr {
+    border-top: 1px solid var(--line); padding-top: 20px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .qr img { width: 112px; height: 112px; border-radius: 8px; flex: none; background: #fff; }
+  .qr p { margin: 0; color: var(--muted); font-size: 14px; }
+  @media (hover: none) { .qr { display: none; } }
+</style>
+</head>
+<body>
+<main>
+  <header class="head">
+    <div class="mono" aria-hidden="true">FT</div>
+    <div>
+      <h1>Federico Tosazzi</h1>
+      <p class="role">CEO &amp; Co-founder</p>
+    </div>
+    <p class="org">ODEX</p>
+  </header>
+
+  <div class="actions">
+    <a class="btn primary" href="federico-tosazzi.vcf" download="federico-tosazzi.vcf">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+      Salva contatto
+    </a>
+    <a class="btn" href="mailto:federico.tosazzi@odex.it">Scrivi una mail</a>
+  </div>
+
+  <dl>
+    <div><dt>Email</dt><dd><a href="mailto:federico.tosazzi@odex.it">federico.tosazzi@odex.it</a></dd></div>
+    <div><dt>Sito</dt><dd><a href="https://www.odex.it">www.odex.it</a></dd></div>
+  </dl>
+
+  <section class="qr" aria-label="QR code per salvare il contatto">
+    <img alt="QR code del contatto di Federico Tosazzi" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnYAAAJ2CAIAAABdNliuAAASD0lEQVR4nO3cwZHcWnZF0a6OmssAuSD/LWkXZIAsgKZ/wHjB7sf970XWWlMGkUgAWTswOV/P8/wDAPjT/jl9AgDwmSQWABISCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACQkFgASEgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJCQWABISCwAJCQWABISCwAJiQWAhMQCQOK7O/R//ff/dAcf8X//+6/Dv9583zce+eZzz85ndfONpq7GWXetpj536hudvfHuv/EX+kY3V+PMWywAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACTCdaezbk3jxhu3cs7/941bOTufjakVnjfuKO383Bvddf68+7vz9zt1NbzFAkBCYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAYmzd6Wxqk6iz8xvdnNXORaqbqzG133RmReuvpp7YG29caOrs/EvY8RYLAAmJBYCExAJAQmIBICGxAJCQWABISCwAJCQWABISCwCJpetObzS1HXPjZkln5/89m9pC6tasbnRXY2rBp3vqzrqzsgz1dt5iASAhsQCQkFgASEgsACQkFgASEgsACYkFgITEAkBCYgEgYd3pb7JzsehsapFqajno7Kdt5dzc/Zs7OHWd33jO7OctFgASEgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEkvXnaZ2hTrdftPOLaQ33sGbK9n93xtTn3s29bk3V2PnPdp5f892nlXHWywAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACTG1p2mVod2mlp4ubkLO1dpdm5d3XjjMpT/+/v/d0p3zm/8lXW8xQJAQmIBICGxAJCQWABISCwAJCQWABISCwAJiQWAhMQCQOLreZ7pc/gQN5smUxs9nZ3faGpn5/MWmjo7z+rGG5eSdi5SvZG3WABISCwAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQkFgASITrThZtfv9zz+wZ/anPvfHTVoemnrruyZl6Js92/rp3Ps9vvPveYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBIPHdHfpmO2bnBpPFkz+lW7Tp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kFgASITrTjv3fXZux5y9cdPk5jp3d2Fqs+bs8/Zudp7z560sTV3nnee88/56iwWAhMQCQEJiASAhsQCQkFgASEgsACQkFgASEgsACYkFgES47tTt+3R2bovs3FI568556hvtXIb6vNWwm2+08zrv9MbfUfe53f31FgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEhILAImv53mmz+Hf9tNWWqZ2SaZM7b9MbQN1+1zds9F97s61srOd3/fz/u8beYsFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYDEd3fobg3n8zZrzqYWT6bOeeo6f97uzM4Fnxvdkd94f2983gbTzr+x3mIBICGxAJCQWABISCwAJCQWABISCwAJiQWAhMQCQEJiASDx9TxPdOid+yA7z+qn2bnR063DTD11O79Rd/dvdOf804489Rs8m/rb7i0WABISCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACQkFgAS39Mn8GvddszU7ozFk983tXa0c5Po5px3bqjd+Lzf785vtHMFb+ffqzNvsQCQkFgASEgsACQkFgASEgsACYkFgITEAkBCYgEgIbEAkPh6nic69NRCU6c7q6kjn3W7Mzt3lKaeyTduEt1wnf9q5/bTjZ1/n8+6c/YWCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACQkFgASEgsAie/pE/i1z9t/Ofu8/aaznXdw51bOje46Ty34nO18rjqf93ejeyan7qC3WABISCwAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQkFgASHw9zzPywd0Oy9TnTm2a3HyjN/7fGzs3es7euEm085x3ntUNv9A/pftG3mIBICGxAJCQWABISCwAJCQWABISCwAJiQWAhMQCQEJiASDxPX0Cv7ZzW+Tmc2+2VG6OfPN/P28dZur73rg5q6nvO3X337jfNPVc7TS1c9fxFgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEhILAImv53miQ79xl2RqAeRs55XcuVfVmfpGNrZ+//+e7TyrTvd3443XauqsvMUCQEJiASAhsQCQkFgASEgsACQkFgASEgsACYkFgITEAkDie+qDu22g7nN37hlNbfSc3VyrneswZ1PPxuftN+3UrUrdfO7Ou7DzL9IUb7EAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJD4ep4nOnS3O7Nz/adbWtm5Z3Q2tcNiV+j3vfGJndpQO9u5Cjd1fz0bf+UtFgASEgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEt/TJ/BrU8tQnZ1rKd2R37hIdTZ1naeWg6Y+9+zmc3ee1Y2da2U/bb/pzFssACQkFgASEgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkxtadut2Zs53LI2dvXEraeY/eeCXPun2um88967aQPm9laeeK1o2dfxk63mIBICGxAJCQWABISCwAJCQWABISCwAJiQWAhMQCQEJiASDx9TzP9DkssnMr52bh5eac37izs3P/pfu+N6ZWls4+77dwY+fK0pSdv+4zb7EAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJCw7vTHdKs0N6Y+96zb6Nl5F852Lvi8cUnnjXtkZzsX5brP7Uw9z95iASAhsQCQkFgASEgsACQkFgASEgsACYkFgITEAkBCYgEg8d0demrFo9Ptg9wc+Y2LNlPPxhsXbbpz3rkcNLV01h1559W4sfOZ3HmtvMUCQEJiASAhsQCQkFgASEgsACQkFgASEgsACYkFgITEAkAiXHc665ZWbkwtJXV7KG/cytm50jLljdd56rdwPvLUttdZt/3U/WXY+dd76qk78xYLAAmJBYCExAJAQmIBICGxAJCQWABISCwAJCQWABISCwCJsXWns8/bJHrjBlN3VjtXaaZWpd64ZrXzSp51G2o3/3fnItXOO7jzrM68xQJAQmIBICGxAJCQWABISCwAJCQWABISCwAJiQWAhMQCQGLputMb3Wy4dCstZzdrKd3KUvd/b4489X2n7FwdujG1DXS+Gjt33yyd/SneYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBIGHd6W8ytRz009Zhzm42iW6+783n7twkOuu+7809uvHGO3hj55V8I2+xAJCQWABISCwAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQWLru9HkbHze6NZwb3ed2R37jlTzrrvONbu3ojUtJN6b+Ev60DaaOt1gASEgsACQkFgASEgsACYkFgITEAkBCYgEgIbEAkJBYAEh8Pc8THfrzdli6zZqdR/68DZepRaobU3fwjb/f7lq98Tp/3lndmPpb5y0WABISCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACQkFgAS4boTAPxk3mIBICGxAJCQWABISCwAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACQkFgASEgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJCQWABISCwAJCQWABL/D036+gM97TMSAAAAAElFTkSuQmCC">
+    <p>Inquadra con la fotocamera per aggiungere Federico alla rubrica.</p>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Armando Ciano · ODEX</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Layout: una colonna centrata, scheda unica con monogramma, dati e azioni. */
+  :root {
+    --bg: #F3F5F8;
+    --card: #FFFFFF;
+    --ink: #0E1A2B;
+    --muted: #5B6779;
+    --line: #DCE2EA;
+    --accent: #1F4FD8;
+    --accent-ink: #FFFFFF;
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0A1220; --card: #111C2E; --ink: #EEF2F8; --muted: #9AA7BA;
+      --line: #223149; --accent: #7FA2FF; --accent-ink: #0A1220;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0A1220; --card: #111C2E; --ink: #EEF2F8; --muted: #9AA7BA;
+    --line: #223149; --accent: #7FA2FF; --accent-ink: #0A1220;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font: 16px/1.5 var(--body);
+    padding-inline: 16px; padding-block: 32px;
+    min-height: 100vh;
+    display: grid; place-items: start center;
+  }
+  main {
+    width: 100%; max-width: 420px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 32px 24px 24px;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .head { display: flex; flex-direction: column; gap: 16px; }
+  .mono {
+    width: 64px; height: 64px; border-radius: 16px;
+    background: var(--ink); color: var(--card);
+    display: grid; place-items: center;
+    font: 700 22px/1 var(--display); letter-spacing: .02em;
+  }
+  h1 {
+    margin: 0; font: 700 30px/1.1 var(--display);
+    letter-spacing: -.01em; text-wrap: balance;
+  }
+  .role { margin: 0; color: var(--muted); font-weight: 500; }
+  .org {
+    margin: 0; font: 700 13px/1 var(--display);
+    letter-spacing: .22em; text-transform: uppercase;
+  }
+  .actions { display: flex; flex-direction: column; gap: 10px; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 52px; padding: 0 20px; border-radius: 14px;
+    font: 600 16px/1 var(--body); text-decoration: none;
+    border: 1px solid var(--line); color: var(--ink); background: transparent;
+  }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+  dl { margin: 0; display: grid; gap: 14px; }
+  dl div { display: grid; gap: 2px; min-width: 0; }
+  dt { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  dd { margin: 0; overflow-wrap: anywhere; }
+  dd a { color: inherit; text-underline-offset: 3px; }
+  .qr {
+    border-top: 1px solid var(--line); padding-top: 20px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .qr img { width: 112px; height: 112px; border-radius: 8px; flex: none; background: #fff; }
+  .qr p { margin: 0; color: var(--muted); font-size: 14px; }
+  @media (hover: none) { .qr { display: none; } }
+</style>
+</head>
+<body>
+<main>
+  <header class="head">
+    <div class="mono" aria-hidden="true">AC</div>
+    <div>
+      <h1>Armando Ciano</h1>
+      <p class="role">Co-founder</p>
+    </div>
+    <p class="org">ODEX</p>
+  </header>
+
+  <div class="actions">
+    <a class="btn primary" href="armando-ciano.vcf" download="armando-ciano.vcf">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+      Salva contatto
+    </a>
+    <a class="btn" href="mailto:armando.ciano@odex.it">Scrivi una mail</a>
+  </div>
+
+  <dl>
+    <div><dt>Email</dt><dd><a href="mailto:armando.ciano@odex.it">armando.ciano@odex.it</a></dd></div>
+    <div><dt>Sito</dt><dd><a href="https://www.odex.it">www.odex.it</a></dd></div>
+  </dl>
+
+  <section class="qr" aria-label="QR code per salvare il contatto">
+    <img alt="QR code del contatto di Armando Ciano" src="data:image/png;base64,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">
+    <p>Inquadra con la fotocamera per aggiungere Armando alla rubrica.</p>
+  </section>
+</main>
+</body>
+</html>
