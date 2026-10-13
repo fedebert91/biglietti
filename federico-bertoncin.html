@@ -5,120 +5,162 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Federico Bertoncin · ODEX</title>
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#09090b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  /* Layout: una colonna centrata, scheda unica con monogramma, dati e azioni. */
+  /* Colori e font ripresi dal sito odex.it. Fondo scuro come il footer del sito. */
   :root {
-    --bg: #F3F5F8;
-    --card: #FFFFFF;
-    --ink: #0E1A2B;
-    --muted: #5B6779;
-    --line: #DCE2EA;
-    --accent: #1F4FD8;
-    --accent-ink: #FFFFFF;
-    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
-    --body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
-    color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0A1220; --card: #111C2E; --ink: #EEF2F8; --muted: #9AA7BA;
-      --line: #223149; --accent: #7FA2FF; --accent-ink: #0A1220;
-      color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0A1220; --card: #111C2E; --ink: #EEF2F8; --muted: #9AA7BA;
-    --line: #223149; --accent: #7FA2FF; --accent-ink: #0A1220;
+    --orange: #FF7F00;
+    --blue: #04A1FF;
+    --bg: #09090b;
+    --surface: #111113;
+    --surface-2: #1a1a1e;
+    --line: #2a2a30;
+    --text: #e4e4e7;
+    --muted: #9a9aa5;
+    --font: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
     color-scheme: dark;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
   body {
-    background: var(--bg); color: var(--ink);
-    font: 16px/1.5 var(--body);
-    padding-inline: 16px; padding-block: 32px;
+    background: var(--bg); color: var(--text);
+    font: 400 16px/1.5 var(--font);
+    -webkit-font-smoothing: antialiased;
+    padding-inline: 16px; padding-block: 24px;
     min-height: 100vh;
     display: grid; place-items: start center;
   }
-  main {
+  .card {
     width: 100%; max-width: 420px;
-    background: var(--card);
+    background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 20px;
-    padding: 32px 24px 24px;
-    display: flex; flex-direction: column; gap: 24px;
+    border-radius: 24px;
+    overflow: hidden;
   }
-  .head { display: flex; flex-direction: column; gap: 16px; }
-  .mono {
-    width: 64px; height: 64px; border-radius: 16px;
-    background: var(--ink); color: var(--card);
-    display: grid; place-items: center;
-    font: 700 22px/1 var(--display); letter-spacing: .02em;
+  .top {
+    position: relative;
+    padding: 28px 24px 28px;
+    background:
+      radial-gradient(120% 90% at 0% 0%, rgba(4,161,255,.22), transparent 60%),
+      radial-gradient(90% 80% at 100% 100%, rgba(255,127,0,.20), transparent 62%),
+      var(--bg);
+    border-bottom: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 56px;
   }
+  .logo { display: block; height: 28px; width: auto; max-width: 160px; margin-left: -29px; }
+  .wordmark { font-weight: 800; font-size: 24px; letter-spacing: .18em; color: #fff; }
+  .id { display: flex; flex-direction: column; gap: 8px; }
   h1 {
-    margin: 0; font: 700 30px/1.1 var(--display);
-    letter-spacing: -.01em; text-wrap: balance;
+    margin: 0; font: 700 34px/1.08 var(--font);
+    letter-spacing: -.02em; color: #fff; text-wrap: balance;
   }
-  .role { margin: 0; color: var(--muted); font-weight: 500; }
-  .org {
-    margin: 0; font: 700 13px/1 var(--display);
-    letter-spacing: .22em; text-transform: uppercase;
+  .role {
+    margin: 0; font-weight: 600; font-size: 13px;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--blue);
   }
-  .actions { display: flex; flex-direction: column; gap: 10px; }
+  .body { padding: 24px; display: flex; flex-direction: column; gap: 24px; }
+
+  .actions { display: grid; gap: 10px; }
   .btn {
+    position: relative; overflow: hidden; isolation: isolate;
     display: flex; align-items: center; justify-content: center; gap: 10px;
-    min-height: 52px; padding: 0 20px; border-radius: 14px;
-    font: 600 16px/1 var(--body); text-decoration: none;
-    border: 1px solid var(--line); color: var(--ink); background: transparent;
+    min-height: 54px; padding: 0 20px; border-radius: 14px;
+    font: 700 16px/1 var(--font); text-decoration: none;
+    transition: transform .12s ease;
   }
-  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-  .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .btn:active { transform: scale(.97); }
+  .btn:focus-visible, .row:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+  .btn.primary { background: var(--orange); color: #fff; }
+  .btn.primary::after {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: rgba(255,255,255,.16); transform: translateX(-101%);
+    transition: transform .4s cubic-bezier(.16,1,.3,1);
+  }
+  .btn.primary:hover::after, .btn.primary:focus-visible::after { transform: translateX(0); }
+  .btn.primary .arrow { transition: transform .25s ease; }
+  .btn.primary:hover .arrow { transform: translateX(4px); }
+  .btn.ghost { border: 1px solid var(--line); color: var(--text); background: transparent; font-weight: 600; }
+  .btn.ghost:hover { background: var(--surface-2); }
   .btn svg { width: 20px; height: 20px; flex: none; }
-  dl { margin: 0; display: grid; gap: 14px; }
-  dl div { display: grid; gap: 2px; min-width: 0; }
-  dt { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-  dd { margin: 0; overflow-wrap: anywhere; }
-  dd a { color: inherit; text-underline-offset: 3px; }
-  .qr {
-    border-top: 1px solid var(--line); padding-top: 20px;
-    display: flex; align-items: center; gap: 16px;
+
+  .rows { display: flex; flex-direction: column; }
+  .row {
+    display: flex; align-items: center; gap: 14px; min-width: 0;
+    padding: 14px 0; border-top: 1px solid var(--line);
+    color: inherit; text-decoration: none;
   }
-  .qr img { width: 112px; height: 112px; border-radius: 8px; flex: none; background: #fff; }
+  .row:first-child { border-top: 0; padding-top: 0; }
+  .ico {
+    width: 40px; height: 40px; border-radius: 12px; flex: none;
+    background: var(--surface-2); border: 1px solid var(--line);
+    display: grid; place-items: center; color: var(--blue);
+  }
+  .ico svg { width: 18px; height: 18px; }
+  .txt { display: flex; flex-direction: column; min-width: 0; }
+  .lbl { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .val { font-weight: 500; overflow-wrap: anywhere; }
+  a.row:hover .val { color: #fff; }
+
+  .qr {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px; border-radius: 16px; background: var(--surface-2); border: 1px solid var(--line);
+  }
+  .qr img { width: 104px; height: 104px; border-radius: 10px; flex: none; background: #fff; padding: 6px; }
   .qr p { margin: 0; color: var(--muted); font-size: 14px; }
   @media (hover: none) { .qr { display: none; } }
+
+  .foot {
+    padding: 16px 24px; border-top: 1px solid var(--line);
+    font-size: 11px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase;
+    color: #6b6b75; text-align: center;
+  }
 </style>
 </head>
 <body>
-<main>
-  <header class="head">
-    <div class="mono" aria-hidden="true">FB</div>
-    <div>
+<main class="card">
+  <header class="top">
+    <img class="logo" src="https://www.odex.it/wp-content/themes/odex/assets/img/logo/odex-logo-light.svg" alt="ODEX" height="28"
+         onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'wordmark',textContent:'ODEX'}))">
+    <div class="id">
       <h1>Federico Bertoncin</h1>
       <p class="role">Travel Production Lead</p>
     </div>
-    <p class="org">ODEX</p>
   </header>
 
-  <div class="actions">
-    <a class="btn primary" href="federico-bertoncin.vcf" download="federico-bertoncin.vcf">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
-      Salva contatto
-    </a>
-    <a class="btn" href="mailto:federico.bertoncin@odex.it">Scrivi una mail</a>
+  <div class="body">
+    <div class="actions">
+      <a class="btn primary" href="federico-bertoncin.vcf" download="federico-bertoncin.vcf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+        Salva contatto
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+    <div class="rows">
+      <a class="row" href="mailto:federico.bertoncin@odex.it">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+        <span class="txt"><span class="lbl">Email</span><span class="val">federico.bertoncin@odex.it</span></span>
+      </a>
+      <a class="row" href="https://www.odex.it">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+        <span class="txt"><span class="lbl">Sito</span><span class="val">www.odex.it</span></span>
+      </a>
+      <div class="row">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+        <span class="txt"><span class="lbl">Sede</span><span class="val">Via Cassala 30, 20143 Milano</span></span>
+      </div>
+    </div>
+
+    <section class="qr" aria-label="QR code per salvare il contatto">
+      <img alt="QR code del contatto di Federico Bertoncin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsYAAALGCAIAAADJCsDiAAAWrUlEQVR4nO3cwY3j3BGFUcvovQNwCs4/EqfgABwBvf0XxkMDdWuqHnXOdtCiRFKaD1zcz/M8fwMAqPn79BsAAN5AUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAJ++l76H//8V9+Lj/jvf/59+NfK56288vlvK/quYN+Z3Hncs76rP3VPTr2y495+3Mqv2dQr36jvfw1PKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAICAxvXMs771roq+TcAplUW5qVXHb9u5m1pH3fnKU3eO4244bsX7PlHF1C+hpxQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAwNh65lnf8lff0tnU8ubUiuWNy31e+fevfKOd67c7F2wrdt6T37ZiufPzekoBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABCxdz7xRZeeubwFzaltzys531beg13d9z6ZeuWLq3pg67tRq55Qbf6/ex1MKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIMB65gqVZbepbc0pU5uPO8/G2dRq59mNy4zvu3P63nPfFex7Vzuv0Y08pQAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAAClq5n3rhlduPq39mNC4k3rhzuvEYVU5utU8ftu9vPrzx1t099uyuf6MZv9408pQAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACxtYzd25N9unbudv5txVTxz2bOlc3Hvfsxs3Hnd+jne/5feeq8srfxlMKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIODzPM/0e2Bsf61vq66yRreTa/R7U0uFU6+8cz/xxvd8tvPO4a88pQAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACfvpeum+Nbmr176zvE/Xt3O38vH363tXU1a/87c79xJ2/G1Pf36lfhp3Lqu+7Y/teeeoX2FMKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIODzPM/Igad20HauwvUd92xq2a3ixs9740qpzce/2rkGu9ONm48WMFM8pQAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACfvpeeudiYN+72rmDduOq49Sy6s5Vx8q7qlyFyjWaWjidMnXHnu08kzt3KiuvvNPU/zieUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABjeuZO9fK+lbD+t7zjUuUZ+/7RGdT7/nbzuSNK7Q7j3s29f3duZt8VtmZ3bl/euYpBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABDQuJ5Z2QWr7KD1LaxVtsxu3EHrM3Umb9yL3LkI+b4V2oob78md34Ub9zErbrxzzjylAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAIa1zOnVv92vnLfstvUK+9c/etbZX3f/unOz7tzIbFy3J17vmc3rjr2vee+td+d38EKTykAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAgMb1zIobN/LOpnbu+hYwdy679W1r9h13apmxou+4N66y3vi3N66Uftu37Kzv81Z4SgEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAENK5nTq13nU1t1Z31vfLUcl9F3+c923nHTrlxMfDsfZ/obOe25tnUFvDZzp3KnfezpxQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAQON6Zp+de3MVU5uAO3cqK2t0O6/gzn29na9cOW7fIuSNvzk3ft6zG7eAK3ZuPZ95SgEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAEjK1nTm2Z9a2GVfQtylWOO7XO5t74vZ2bgDu3F6fu9vd9y75txbLPjb85Z55SAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGf53lGDjy1gWhP8M/4tm2+9x13atfvxnNVOW7Fzu/ClKnvwo2/Zn33pKcUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQEDjeubONbob9+Z2rv7tXKPrs/Pz7vzbCt/B3x+3z87r2/fLX7Fz43LqV9RTCgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACDgheuZU3uCZzvPxo0sb6aOu3MR8n17oFPet+o49Z4r3reseuYpBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABDQuJ5ZceMG4s4twor3fd6di4F9x+2z8xt6NvWed+75nu3cML3xb892fqIKTykAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAgJ+pA/etK1ZMbT7uXEmbOu75lXcuYPad57OpqzC1ndqn777aea5u/K3rs/Ma3chTCgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACDg8zzP9HsI27nOtnPzsXLcnZ/o21bwdi5vVky9q5331dRV6LPzrusz9Qs8dSY9pQAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACfqYO3LcpNrX5uHPL7MYFzIq+DcSdG6YVO++Niqnv4NS25retdk593p2/7Tt5SgEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAEfJ7nGTnwzpXDG/WdyT591/fbNh9vPFc3bj5OLaveeJ59B1N/e7bzf0lPKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAICAn6kDT6067lwM3Ln4uXOd7Wzn2mBF5V3tvEY7TZ3nqW/ZzqtvS/T3r7yTpxQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAwNh6ZmUl7fy3O/cxK963gdi3VHh247maes9Ta4Nnfd/9nXbese/7ja0ct7KOWrHzbveUAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAgYW8+s7GNW/vasb6dy5wpeRd9V6Htlx/39cSt/O7VxOXVPVnzb2dh5Ffrs3Ljs4ykFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAEDC2nnk2ta3Z97dnfQtrfe+5Yuo8n01ttp7t3G3c+R0861v8fN+9UbHzXO208wpWeEoBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABHye52l66Ru3Jvu8b9Pzxt23nef57Ma7/WzqnrzxCt54rqYWTu1y/l7f3e4pBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABDwM/0G/r++pbOdG3lTdm4R3rg22PfKU0uFFVPfhW+7J/uOe7bzPN94rs52rsGeeUoBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABDSuZ06td1VM7ZFNnavKcaeW3d53FXburu7c5ju78XvkuH/muH27nDuXN6fes6cUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQMDneZ7p9xB249JZRWXFcuqVK8d9n747dud3Yed95bjffNyd34WpV67wlAIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIaFzPvHG3ccrUhtrU31b03VcVOzcBd+q72x33m4/7Pjdua3pKAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAAT89L103+rfjZtiO9cVdy4z7rxGlePuXEetuPGbsnOZ8caV4b6rXznu1Jnc+Ss6xVMKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIKBxPfNGfftrU+tsO5fdKsfduUN6VrlGN945O9cVz/o+0ftWHW/8zTm78RPt/A56SgEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAEfJ7naXrpqU2xqdWwG1cdK8c961sM7Dtunxvvyan33Mc3ZYNv+2XYuejax1MKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIGBsPbNv+aty3L6/Pdu5jzl1Nip27hhO3ZNnN97tU78bfW68gjf6thXLqffsKQUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQ8NP30lPrexXvWwzs28jbeQXPdu5F9v1t331VOVfv223sOxtT35T3rcFW/nbnd3Dn98hTCgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACCgcT3zbOd+YsXUQmKfvjXJqd23qU3Asxu/C+f3PHXn7PweVez8vH3HvXFrcueK5dS94SkFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAEDC2nnnWt6F241JhRd+O4U7v20+s6FsLPdt5X02to06ZWt688Vz1mfoOTvGUAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAgYW8+sLKxNreD1bZn1veephcSpLcLKu9q5c3fjvp5lxj9j5y/DlL7v79Rv3dR7rvCUAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAj4PM/T9NI7d+527vpNbU1Omfq8U5uAU5utN67vne3cbO27RjuPe3bjVTib+m2/cQnaUwoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAg4KfvpXeuhu3cbtu5VHg2tel5427j1P288845m1r8vPEq9B33xgXMqatw47nq4ykFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAEPB5nmfkwFObYn0Laze+8rcdd2qZ8ezGV64c92xqH3Pq6p/d+J4rbvwu7DzPU+/KUwoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAg4Kfvpfv2MSvH7dubm3rlnfr2EyvHvfFMVvSdyT5Txz3buTTad66m9k/PphYwz963YVrhKQUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQ8Hmep+mld67gne3cyJtak9y5oFcxdX137vpV9F3BqXvy7MY7dud3/+zbtibf93k9pQAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACxtYzK9ttN24gVo47pe8aTe36nd24VXe2c//0xt3GynF3Lm/u3D/dedd92yeq8JQCAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACPiZfgP/39Ti2I0Lazs38nbauWRXeeUpfTuVO+/nncfdedfduJs85X2fyFMKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIODzPE/TS79vb27n31bcuM035cbP+779xIqd39++z3u28zu482zc+Ds59X+KpxQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAwE/fS0/tRd64kbdzu22nnft671O56/rO1dTdvnPT83369iIrpv4/Ott5b3hKAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAAQ0rmdW7Nyqe98eaJ++Fbyd+3o3rqPuPJOV47rbbz/u2dT13Xmudu75ekoBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABIytZ05tAt64g7ZzQ63vuH33RuW4fX9bsfO4N+6fTtn53d+5Bdxn529sxdQn8pQCAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACBhbz9ypsjh24yrcWd/K4fvW6HYe99uu4Pu2NSv6Fnsrdt5XU2vOfX87xVMKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIKBxPXPnEuWNe4KVs9H3ripXYee9sdONC3oVfVew787p+w5OfX+/7a6rmPp93vlb5ykFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAENC4njm1gFlZK+v724qpXb+pldKzvk+08548m1rQ27nct3PB9mznmZxy4/3sCv6VpxQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAwOd5nun38BJTW5M79zF37pC+7z2f9a12Vo57duM27s5r9L7v0c7zXDluxdSZPPOUAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAj46XvpvtWwKTsX1vre1c51trMb9zEr+t7VzutbceP17XPj2di5gFk57o1X4cxTCgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACCgcT3zbOf6Xt+K5ft23yqmVuGmlkb79K3v3Xiudq4NTn0Hp1Ydd+759h23z87/Jc88pQAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACPs/zNL10ZWFtagftxq3JyruaWgudMrU1ufNs3Gjn3V6x89td0fcbu/P/lCk7tzU9pQAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACfqbfwLeYWmasLKz1rbP1bQLu3Me8cddv585s5biVT7RzV7di5/1846/Z2c5vdx9PKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAA65kx79tPnFoqPJt65b6/nXrls74dw513+9TiZ5+d93PluDeeyT5Tv3VnnlIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAUvXM3eulZ1Vdt/6/rZP37vaubw5tRe5c2l06upX7Pwe+bx/5m/Ppr4LO69RhacUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQMDneZ6ml67ske20cx9z6jxPbVye7TwbZzu/Kd921znu7cd93x3b96vSt8vpKQUAECApAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQ0LieCQB8D08pAIAASQEABEgKACBAUgAAAZICAAiQFABAgKQAAAIkBQAQICkAgABJAQAESAoAIEBSAAABkgIACJAUAECApAAAAiQFABAgKQCAAEkBAARICgAgQFIAAAGSAgAIkBQAQICkAAACJAUAECApAIAASQEABEgKACBAUgAAAZICAAj4H4YlJNE55tCYAAAAAElFTkSuQmCC">
+      <p>Inquadra con la fotocamera per aggiungere Federico alla rubrica.</p>
+    </section>
   </div>
 
-  <dl>
-    <div><dt>Email</dt><dd><a href="mailto:federico.bertoncin@odex.it">federico.bertoncin@odex.it</a></dd></div>
-    <div><dt>Sito</dt><dd><a href="https://www.odex.it">www.odex.it</a></dd></div>
-  </dl>
-
-  <section class="qr" aria-label="QR code per salvare il contatto">
-    <img alt="QR code del contatto di Federico Bertoncin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnYAAAJ2CAIAAABdNliuAAAR8ElEQVR4nO3cwY30WlRGURr1nABIgfwjIQUCIAIzfUhPV0/cf3OOq9aat8vlcnvLk+/neZ5/AQD+tH+dPgEA+EwSCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACQkFgASEgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJCQWABISCwAJCQWABISCwAJiQWAhMQCQEJiASDx2x363/79P7qDj/jv//rPkc+9uZI353z+3Kkjd387pbuSOz/3xuf9vjuv5NnO63yje7Z7iwWAhMQCQEJiASAhsQCQkFgASEgsACQkFgASEgsACYkFgES47nQ2tZR01q2WdCs85yN3C01nb9xv2rnedT6rNy4Hdffk1P1887c7z/nGtz3bz7zFAkBCYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAYmzd6axb4phaHrn53KllqLOpDaZuK2dqkWrqnN9oar1r55WcWiy68XnP9jNvsQCQkFgASEgsACQkFgASEgsACYkFgITEAkBCYgEgIbEAkFi67vR5plZpptZ/pr4vf/Vtd92Uqe/bbajxp3iLBYCExAJAQmIBICGxAJCQWABISCwAJCQWABISCwAJiQWAhHWnFbqVlqkjv1F3rXbu7Oy866buq+43uvm+O68V/5y3WABISCwAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQkFgASCxdd3rjakm3/nOz/zK1WXN28/t21+ps6pxvTC00Tf0vdLoNpm/bftp5Vh1vsQCQkFgASEgsACQkFgASEgsACYkFgITEAkBCYgEgIbEAkBhbd+pWh3bqVoe6z935t52d5/zGz51a4Np5X+3UXatve7afeYsFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYBEuO70bVsqU/tNZ9+2d/N53/eN53zW/UZT+1xTG1s3dn7fz+MtFgASEgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEj/P80SH7rZUbo58s5YydeSzndf5jUeeuq922rlY1N0bN5+788idqRWtN/IWCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACQkFgASEgsAid/pE/i/uNkHeeMm0U47F5puTO3O7NzK6T5353Xujjy1ZnVj6ok09bnddfYWCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACQkFgASEgsAiaXrTt3GR7fDcrOG0+37fN420M6NrZ37Pt09eaO7n8+mjrzz3vg83XW+4S0WABISCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACQkFgASS9ed3rgss3NlaWrx5PMWbXbek2c7925uTK133Zj63++88Wk2dZ29xQJAQmIBICGxAJCQWABISCwAJCQWABISCwAJiQWAhMQCQOLneZ7pc/gbUzsdU6tD3fd94yJVZ2rfZ2o1rLNzZWnnWd2Y+i/7vHty6mnmLRYAEhILAAmJBYCExAJAQmIBICGxAJCQWABISCwAJCQWABJj605vXA564/bTGzdruus89Que7dwye+NS0s7nRmfnU3TnWU3xFgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEhILAInf7tA7Nz52rh2dvXG/acrOxaKphabuyN03+rbfaOfnvvFKnk0Vx1ssACQkFgASEgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkwnWns507Hd3iydQG0xu3Y6b2fabWcM6mrtUb99feuIN28yt83pOw+75Td7u3WABISCwAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQkFgASPw8zzN9Dn/YztWhs6lz3rk59cZ9n6lvdPbG73tj53/K590bU0/CG1NrZd5iASAhsQCQkFgASEgsACQkFgASEgsACYkFgITEAkBCYgEgEa47fd5Ox84NpqmrsdMbf6Od/yndXTe1lLRzv+mNm3Fnb/yNOt5iASAhsQCQkFgASEgsACQkFgASEgsACYkFgITEAkBCYgEgYd3pf9m57/PGbaCznXs3O33br7Dzc3euHXXeeFY3um/kLRYAEhILAAmJBYCExAJAQmIBICGxAJCQWABISCwAJCQWABK/Ux/cbanc7JJM7SjduNklmbrON0c+u/nc7pynrsaNqS2kN35u542LVDduns9nU/9H3mIBICGxAJCQWABISCwAJCQWABISCwAJiQWAhMQCQEJiASAxtu501m30TO2SdLszU6Z2lM6+bQ3n7Oasut/If+hf7bxzdj5z3shbLAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJCQWABISCwAJH6e5xn54G5ZZurIZ5/3jaZMLTTd2Lk5dWNqGeqGc/7sz935+3qLBYCExAJAQmIBICGxAJCQWABISCwAJCQWABISCwAJiQWAxNi6U2dqSefG1Fl1ayk7d6O+bUdp51bO590bb7waU2tHb9yNuuEtFgASEgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEr/TJ/D3bpY4bnY6prZFul2hqSPvPKspU9tA3bXq/kOn7o2dd87UBtPZ593PHW+xAJCQWABISCwAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQCNeddm5tnHWrJd1S0s3nnu1cWunO6o3bMW/8vt1+083fvvFaTT1Vzr5tu+3MWywAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACR+nueJDv3GFZ5u8WQn+y9/6nPPpq7zFP+D/9zO/aadW1dnO+8cb7EAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJB45brTG02ttJxNrfDsXP954+ZUZ2or59u2gd74P9j5vOU+b7EAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJD47Q7drWm8cSnp87auurOa2mGZsnOvamrraupvbXv91c578o3X2VssACQkFgASEgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkwnWnbmWpW/HYuQy181rt3H+5sfM6d/dGt5Xzxi2zN67RTV2rqefk2c7VP2+xAJCQWABISCwAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQ+HmeJzr0zsWinQtNO7/RlO5qTF3nnathN3bedVN3zrddjRs7z6rjLRYAEhILAAmJBYCExAJAQmIBICGxAJCQWABISCwAJCQWABJj605n3UbPTlObRN0i1dR619nUOszOO3bnvbHzvtq57bXzvrox9eTvngzeYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBIPE79cFTOztnU5s1ZzuPPLXR83l2bpnd/Ebd7zu177Pzv2znndN54zPHWywAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACR+nucZ+eBuLeXGG8/Kwss/t3MbaGp3Zuqsdi6dTfHc+P9h3QkAPorEAkBCYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYDE7/QJ/HlTC007l6F2fqObI+/8fb9tv6k78tRO1s7/35vv2/0P7vy+OxepvMUCQEJiASAhsQCQkFgASEgsACQkFgASEgsACYkFgITEAkDi53me6XP4G93Gx9R2zNnOTZOprZzO1C94tvP33fkLnk2taN2Yus6ft4S1k7dYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJCQWABI/HaHvlksmloA2bn9dDZ1zlMLL29cwtq54PPGXbDuG+38/z27+b7dk8Gv/1feYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBIPHzPE906J1bGzvP6qw756ntp52rQ2/83Df+p0xtXd3YuYO2c2/ujU8V604A8DISCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACQkFgASv9Mn8PemljimVni61ZKbc55aHZpaLJpa8HmjN/6nnE1te511/79vPKs3roZ5iwWAhMQCQEJiASAhsQCQkFgASEgsACQkFgASEgsACYkFgMTP8zzT5/A3ptadpvaMunWnz9u76XzelXzjL/h55zx1t+98mnV2PlW8xQJAQmIBICGxAJCQWABISCwAJCQWABISCwAJiQWAhMQCQGLputPZG1dLvm0NZ2qv6o3LMm+8Vlal/mrnPXk2dW90dm5seYsFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYDE0nWnqXWYz9s0Odt5zju3cnZeqxtv3H76tv/fbtvrbOd/6NRvdMNbLAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJCQWABISCwAJH67Q3fLIzfbIt1qydSmydSGy5Sd33fnBtPU355N3Vc71466J+HZzpW07qymnnXeYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBIBGuO02ZWjyZWni5MbXgs/Nafd7eje2nP2Xqrtu53zT1nzL1uTe8xQJAQmIBICGxAJCQWABISCwAJCQWABISCwAJiQWAhMQCQGLputPOLZWpzZqp/ZfuanR27gqdz2rnvs/UAtfNkXeuhn3bHtnOI09dK2+xAJCQWABISCwAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQGFt3mtqdOdu5WXNz5ClTSzqdN36jNy403Rz5Rrd09sb9te777nxedbzFAkBCYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAIlx3mtpw2bmzc7Zz6+qNvm3vZufa0c2Rb3jm/NXOJ8PUTtYUb7EAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJAI15127nS8cdPkrNsV+rxlqDfu3XRH3rkM9Xm/wo2pLaSdi2M3pnrkLRYAEhILAAmJBYCExAJAQmIBICGxAJCQWABISCwAJCQWABI/z/NEh9658dGteOxcWpky9X275aCdR955X73xWk0tUu18Ik19o6lfsOMtFgASEgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEuG60xu9cXfmbOfK0s3nTq20TP2Cn8e1+ud2PlU6U//dHW+xAJCQWABISCwAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQ+J0+gV2mtpA6O5eSznYuQ3XXqjtyt/5z87fdf8rO+/ls6lqdTd2TN3/b3c83vMUCQEJiASAhsQCQkFgASEgsACQkFgASEgsACYkFgITEAkAiXHfauXZ047wA0u3d7Fxa6bxxkarTXY1uZ+esO+du/efsjUe+8cZ7cuq54S0WABISCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACQkFgAS4brT2c6Nnqm9m+7IO6/zTju3rqZ+wW5XqFvh+byVpW+7J6eWoTreYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBIDG27nTW7XTs3CW5sXPT5OyNv+/N556/79QveHPOU9tP3d92q1Jn3XXeuVV3o7tW3XPDWywAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQkFgASEgsACSWrju90dR6yM5Nk87OZaips+oWfD5v7ejzzqr7/+12sr5tkcpbLAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJCQWABISCwAJKw7/THdCs/N537eos3U7syNqb2bqfWuN57z2dSO0s479mznrz+1/eQtFgASEgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEkvXnXYuvNzo1lK6HaWp/aaznbszO3d2bkxt9NzcV2/8jbpz7jbF3vh8njpnb7EAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJAYW3fqllamTH2jNy6t3Jha/9m5otUdeee1Otu539R97tT37T73835Bb7EAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJD4eZ5n+hwA4AN5iwWAhMQCQEJiASAhsQCQkFgASEgsACQkFgASEgsACYkFgITEAkBCYgEgIbEAkJBYAEhILAAkJBYAEhILAAmJBYCExAJAQmIBICGxAJCQWABISCwAJCQWABISCwAJiQWAhMQCQEJiASAhsQCQkFgASPwPbakOvB3wdmwAAAAASUVORK5CYII=">
-    <p>Inquadra con la fotocamera per aggiungere Federico alla rubrica.</p>
-  </section>
+  <footer class="foot">Unique experiences</footer>
 </main>
 </body>
 </html>
